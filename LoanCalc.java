@@ -64,8 +64,9 @@ public class LoanCalc {
 			mid = (low + high) / 2;
 			double balance = endBalance(loan, rate, n, mid);
 	
-			if (Math.abs(balance) <= epsilon) {
-				break;
+
+			if (Math.abs(balance) < epsilon / 10) {
+				break; 
 			}
 	
 			if (balance > 0) {
@@ -80,5 +81,6 @@ public class LoanCalc {
 		mid = (low + high) / 2;
 		return mid;
 	}
+	
 	
 }
