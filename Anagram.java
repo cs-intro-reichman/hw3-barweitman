@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import javax.print.DocFlavor.STRING;
+
 /** Functions for checking if a given string is an anagram. */
 public class Anagram {
 	public static void main(String args[]) {
@@ -27,11 +29,19 @@ public class Anagram {
 		}
 		System.out.println(pass ? "test passed" : "test Failed");
 	}  
-
+	public static String RemoveSpaces(String str) {
+		String str1 = "";
+		for (int i = 0; i < str.length(); i++){
+			if (str.charAt(i) != 32) {
+				str1 += str.charAt(i);
+			}
+		}
+		return str1;
+	} 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		str1 = preProcess(str1);
-		str2 = preProcess(str2);
+		str1 = RemoveSpaces(preProcess(str1));
+		str2 =RemoveSpaces(preProcess(str2));
 		if (str1.length() != str2.length())
 			return false;
 		else{
@@ -49,9 +59,20 @@ public class Anagram {
 	 
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
-	// as is. For example, the string "What? No way!" becomes "whatnoway"
+	// as is. For example, the string "What? No way!" becomes "what no way"
+
+	// return str.toLowerCase().replaceAll("[^a-z]", " ");
 	public static String preProcess(String str) {
-		return str.toLowerCase().replaceAll("[^a-z]", "");
+		String str2 = "";
+		for (int i = 0; i < str.length(); i++){
+			if ((str.charAt(i) < 65 || str.charAt(i) > 122) && str.charAt(i) != 32) {
+			continue;
+			}
+			else{
+				str2 += str.charAt(i);
+			}
+		}
+		return str2.toLowerCase();
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
