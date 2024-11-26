@@ -122,6 +122,9 @@ public class Algebra {
 		if (x1 < 0 || x2 < 0){
 			check = true;
 		}
+		if (x1 < 0 && x2 < 0){
+			check = false;
+		}
 		if (x1 < 0){
 			x1 = -x1;
 		}
@@ -136,6 +139,7 @@ public class Algebra {
 		return -result;
 	}
 	else{
+		
 		return result;
 	}
 	}
